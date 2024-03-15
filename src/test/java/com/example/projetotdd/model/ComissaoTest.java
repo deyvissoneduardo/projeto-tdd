@@ -2,14 +2,29 @@ package com.example.projetotdd.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootTest
 public class ComissaoTest {
+
+    @TestConfiguration
+    static class ComissaoConfiguration {
+
+        @Bean
+        public Comissao comissao(){
+         return   new Comissao();
+        }
+        
+    }
+
+    @Autowired
+    Comissao comissao;
     
     @Test
     public void calculaComissaoAteMil(){
-        Comissao comissao = new Comissao();
         Double valorVenda = 1000.0;
         Double valorComissao = 150.0;
 
@@ -20,7 +35,6 @@ public class ComissaoTest {
 
     @Test
     public void calculaComissaoMaisDeMil(){
-        Comissao comissao = new Comissao();
         Double valorVenda = 2000.0;
         Double valorComissao = 300.0;
 
